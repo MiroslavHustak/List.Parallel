@@ -6,7 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="README.md" />
     <Compile Include="Library.fs" />
   </ItemGroup>
+
+  <ItemGroup />
 
 </Project>
