@@ -42,7 +42,7 @@ let private maxDegreeOfParallelismExample : int -> int =
 //   Token -> variant with built-in cancellation support (via CancellationToken)
 //   Async -> asynchronous variant
 
-// Any combination is missing? Let me know.
+// Any combination missing? Let me know.
 
 // ******************** ITER ***********************
 

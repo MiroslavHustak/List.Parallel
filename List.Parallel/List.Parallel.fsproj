@@ -12,7 +12,6 @@
 	<RepositoryUrl>https://github.com/MiroslavHustak/List.Parallel</RepositoryUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/MiroslavHustak/List.Parallel</PackageProjectUrl>
