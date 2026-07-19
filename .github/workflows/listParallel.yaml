@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write
+      id-token: write # CRUCIAL: This allows the runner to request the OIDC token from GitHub
 
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
 
       - name: Restore
         run: dotnet restore
@@ -31,13 +31,11 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release --no-build --output nupkg
 
-      - name: Setup NuGet Trusted Publishing
-        uses: nuget/setup-nuget@v2
-        with:
-          nuget-version: latest
-
+      # FIX: We removed setup-nuget because the native dotnet CLI is preferred for OIDC.
+      # We explicitly pass the system token generated via id-token: write permissions.
       - name: Publish to NuGet.org
         run: |
           dotnet nuget push "nupkg\*.nupkg" `
-            --source https://api.nuget.org/v3/index.json `
+            --source "https://api.nuget.org/v3/index.json" `
+            --api-key OpenIdConnect `
             --skip-duplicate
