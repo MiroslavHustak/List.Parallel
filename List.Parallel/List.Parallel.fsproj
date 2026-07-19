@@ -9,10 +9,8 @@
 	<PackageId>List.Parallel</PackageId>
     <Description>Parallel extensions for F# List module (CPU + IO optimized, with cancellation support)</Description>
 	<PackageTags>fsharp;parallel;list;async;performance</PackageTags>
-	<RepositoryUrl>https://github.com/MiroslavHustak//List.Parallel</RepositoryUrl>
+	<RepositoryUrl>https://github.com/MiroslavHustak/List.Parallel</RepositoryUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<PackageTags>fsharp;list;parallel</PackageTags>
 	<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
