@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write        # ← This is critical
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -26,16 +26,14 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build -c Release --no-restore
+        run: dotnet build --configuration Release --no-restore
 
       - name: Pack
-        run: dotnet pack -c Release --no-build -o nupkg
-
-      - name: Push using Trusted Publishing
-        uses: nuget/setup-nuget@v2
+        run: dotnet pack --configuration Release --no-build --output nupkg
 
       - name: Publish to NuGet.org
-        run: |
-          dotnet nuget push "nupkg\*.nupkg" `
-            --source https://api.nuget.org/v3/index.json `
-            --skip-duplicate
+        uses: nuget/publish@v2
+        with:
+          PROJECT_PATH: List.Parallel.fsproj
+          NUGET_SOURCE: https://api.nuget.org/v3/index.json
+          # Do NOT specify API_KEY — Trusted Publishing will be used automatically
