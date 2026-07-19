@@ -31,7 +31,12 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release --no-build --output nupkg
 
-      - name: Publish using Trusted Publishing
+      - name: Setup NuGet Trusted Publishing
+        uses: nuget/setup-nuget@v2
+        with:
+          nuget-version: latest
+
+      - name: Publish to NuGet.org
         run: |
           dotnet nuget push "nupkg\*.nupkg" `
             --source https://api.nuget.org/v3/index.json `
