@@ -1,8 +1,9 @@
 name: Publish to NuGet
 
 on:
+  workflow_dispatch:
   release:
-    types: [created]     # Trigger when you create a new Release on GitHub
+    types: [created]
 
 jobs:
   publish:
@@ -10,8 +11,9 @@ jobs:
     
     permissions:
       contents: read
-      packages: write    # Important for Trusted Publishing
-    
+      packages: write
+      id-token: write        # ← This is critical
+
     steps:
       - uses: actions/checkout@v4
 
@@ -29,11 +31,11 @@ jobs:
       - name: Pack
         run: dotnet pack -c Release --no-build -o nupkg
 
-      - name: Publish to NuGet.org
+      - name: Push using Trusted Publishing
         uses: nuget/setup-nuget@v2
 
-      - name: Push package
+      - name: Publish to NuGet.org
         run: |
-          dotnet nuget push nupkg\*.nupkg `
+          dotnet nuget push "nupkg\*.nupkg" `
             --source https://api.nuget.org/v3/index.json `
             --skip-duplicate
