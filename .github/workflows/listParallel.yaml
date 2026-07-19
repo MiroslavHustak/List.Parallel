@@ -1,0 +1,39 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [created]     # Trigger when you create a new Release on GitHub
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    
+    permissions:
+      contents: read
+      packages: write    # Important for Trusted Publishing
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Pack
+        run: dotnet pack -c Release --no-build -o nupkg
+
+      - name: Publish to NuGet.org
+        uses: nuget/setup-nuget@v2
+
+      - name: Push package
+        run: |
+          dotnet nuget push nupkg\*.nupkg `
+            --source https://api.nuget.org/v3/index.json `
+            --skip-duplicate
