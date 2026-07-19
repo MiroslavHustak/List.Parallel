@@ -30,6 +30,16 @@ let private maxDegreeOfParallelismExample : int -> int =
         | Medium -> maxDegreeOfParallelismMedium
         | Large  -> maxDegreeOfParallelism
 
+// Legend:
+// PT    -> Task Parallel Library (TPL)-based code. Underlying mechanism: TPL's Parallel.For/ForEach (data-parallel partitioner)
+// AW    -> Async Workflow-based code. Underlying mechanism: F# Async workflows composed via Async.Parallel
+// CPU   -> CPU-bound operations
+// IO    -> I/O-bound operations
+// Token -> variant with built-in cancellation support (via CancellationToken)
+// Async -> asynchronous variant
+
+// Any combination is missing? Let me know.
+
 // ******************** ITER ***********************
 
 let iter_CPU_PT (action : 'a -> unit) (list : 'a list) : Result<unit, string> =
