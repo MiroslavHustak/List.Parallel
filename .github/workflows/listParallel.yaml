@@ -34,8 +34,4 @@ jobs:
       # FIX: We removed setup-nuget because the native dotnet CLI is preferred for OIDC.
       # We explicitly pass the system token generated via id-token: write permissions.
       - name: Publish to NuGet.org
-        run: |
-          dotnet nuget push "nupkg\*.nupkg" `
-            --source "https://api.nuget.org/v3/index.json" `
-            --api-key OpenIdConnect `
-            --skip-duplicate
+        run: dotnet nuget push "nupkg\*.nupkg" --source "https://api.nuget.org/v3/index.json" --api-key OpenIdConnect --skip-duplicate
