@@ -25,8 +25,11 @@ See library.fs - the very simple F# code will tell you all you need to use this 
 ### Legend:
 
 **Examples:**
+
 `List.Parallel.iter_CPU_AW_Async`
+
 `List.Parallel.iter2_IO_AW_Token_Async`
+
 `List.Parallel.iter2_CPU_PT`
 
 **Parallelism mechanism:**
