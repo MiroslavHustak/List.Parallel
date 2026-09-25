@@ -19,7 +19,7 @@
 
 ### Usage:
 
-See library.fs - the very simple F# code will tell you all you need to use this library. You can also copy the code to create your own custom variant. 
+See library.fs - the very simple F# code will tell you all you need to use this library. You may also clone the library to create your own custom variants. 
 
 
 ### Legend:
